@@ -73,10 +73,6 @@ mx *.us.messagelabs.com symantec-us.rollup
     max-msg-per-connection 100
 </domain>
 
-<domain gmail.com>
-    reuse-ssl-session yes
-</domain>
-
 # domains that resolve to mx?.hotmail.com
 <domain outlook.rollup>
     max-smtp-out   10
