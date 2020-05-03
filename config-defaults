@@ -1,0 +1,2148 @@
+############################################################################
+# BEGIN: MX rollup rules
+############################################################################
+
+<mx-rollup-list>
+mx aspmx.l.google.com google.rollup
+mx *.l.google.com google.rollup
+mx *.google.com google.rollup
+mx *.googlemail.com google.rollup
+mx mx-aol.mail.gm0.yahoodns.net yahoo-aol.rollup
+mx mta5.am0.yahoodns.net yahoo.rollup
+mx mta6.am0.yahoodns.net yahoo.rollup
+mx mta7.am0.yahoodns.net yahoo.rollup
+mx mx-biz.mail.am0.yahoodns.net yahoohosted.rollup
+mx mx1.biz.mail.yahoo.com yahoohosted.rollup
+mx mx-apac.mail.gm0.yahoodns.net yahooasia.rollup
+mx mx-tw.mail.gm0.yahoodns.net yahooasia.rollup
+mx mx-eu.mail.am0.yahoodns.net yahooeu.rollup
+mx mx-rogers.mail.am0.yahoodns.net yahoorogers.rollup
+mx mx6.mail.icloud.com icloud.rollup
+mx mx5.mail.icloud.com icloud.rollup
+mx mx4.mail.icloud.com icloud.rollup
+mx mx3.mail.icloud.com icloud.rollup
+mx mx2.mail.icloud.com icloud.rollup
+mx mx1.mail.icloud.com icloud.rollup
+mx *.newnet66.org defense.rollup
+mx *.olc.protection.outlook.com outlook.rollup
+mx *.mail.protection.outlook.com outlook.rollup
+mx *.us.messagelabs.com symantec-us.rollup
+</mx-rollup-list>
+
+############################################################################
+# END: MX rollup rules
+############################################################################
+
+############################################################################
+# BEGIN: ISP rules
+############################################################################
+
+<domain cox.net>
+    max-smtp-out 5
+</domain>
+
+<domain att.net>
+    max-smtp-out 2
+</domain>
+
+<domain adelphia.net>
+    max-smtp-out 4
+</domain>
+
+<domain bellsouth.net>
+    max-smtp-out 10
+    max-msg-per-connection 1
+    retry-after 5m
+</domain>
+
+<domain mac.com>
+    ignore-chunking yes
+</domain>
+
+<domain orange.fr>
+    max-smtp-out 1
+    max-msg-rate 1000/m
+    max-connect-rate 10/m
+    max-msg-per-connection 100
+</domain>
+
+<domain wanadoo.fr>
+    max-smtp-out 1
+    max-msg-rate 1000/m
+    max-connect-rate 10/m
+    max-msg-per-connection 100
+</domain>
+
+<domain gmail.com>
+    reuse-ssl-session yes
+</domain>
+
+# domains that resolve to mx?.hotmail.com
+<domain outlook.rollup>
+    max-smtp-out   10
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  360m
+	max-msg-rate 250/h  # prevent "exceeded the rate limit"
+	smtp-421-means-mx-unavailable yes
+	smtp-hosts lookup-mx:outlook.com
+	use-starttls yes
+    dkim-sign yes
+</domain>
+
+# domains that resolve to ?.mx.mail.yahoo.com
+<domain yahoo.rollup>
+    max-msg-per-connection 20  # yahoo policy
+    max-smtp-out   20
+    smtp-greeting-timeout  5m
+    mx-connection-attempts 10
+    backoff-to-normal-after 4h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+	max-msg-rate 250/h  # prevent "exceeded the rate limit"
+	use-starttls yes
+    dkim-sign yes
+</domain>
+
+<domain yahoohosted.rollup>
+    max-msg-per-connection 2  # yahoo policy
+    max-smtp-out   20
+    max-msg-per-connection    20
+    smtp-greeting-timeout  5m
+    mx-connection-attempts 10
+    backoff-to-normal-after 4h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    use-starttls yes
+    dkim-sign yes
+</domain>
+
+<domain yahooasia.rollup>
+    max-msg-per-connection 2  # yahoo policy
+    max-smtp-out   20
+    max-msg-per-connection    20
+    smtp-greeting-timeout  5m
+    mx-connection-attempts 10
+    backoff-to-normal-after 4h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    use-starttls yes
+    dkim-sign yes
+</domain>
+
+<domain yahooeu.rollup>
+    max-msg-per-connection 2  # yahoo policy
+    max-smtp-out   20
+    max-msg-per-connection    20
+    smtp-greeting-timeout  5m
+    mx-connection-attempts 10
+    backoff-to-normal-after 4h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    use-starttls yes
+    dkim-sign yes
+</domain>
+
+<domain yahoorogers.rollup>
+    max-msg-per-connection 2  # yahoo policy
+    max-smtp-out   20
+    max-msg-per-connection    20
+    smtp-greeting-timeout  5m
+    mx-connection-attempts 10
+    backoff-to-normal-after 4h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    use-starttls yes
+    dkim-sign yes
+</domain>
+
+# domains that resolve to mailin-0?.mx.aol.com
+<domain yahoo-aol.rollup>
+   max-smtp-out   20
+   max-msg-per-connection   450
+   max-rcpt-per-message   100
+   backoff-to-normal-after 4h
+   backoff-max-msg-rate  30/h # Use with LOLYMTA 3.5
+   backoff-retry-after   30m
+   max-msg-rate 250/h  # prevent "exceeded the rate limit"
+   use-starttls yes
+   dkim-sign yes
+</domain>
+
+# domains that resolve to (alt?.)gmail-smtp-in.l.google.com
+<domain google.rollup>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+	max-msg-rate 1000/h  # prevent "exceeded the rate limit"
+	smtp-hosts lookup-mx:gmail.com
+	smtp-hosts lookup-mx:google.com
+	use-starttls yes
+	reuse-ssl-session yes
+    dkim-sign yes
+</domain>
+
+domain-macro libero libero.it
+<domain $libero>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10
+	max-msg-rate 250/h
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+	dkim-sign yes
+</domain>
+
+domain-macro racsa ccss.sa.cr, ns.isi.ulatina.ac.cr, sol.racsa.co.cr, ns.ulatina.ac.cr, costarricense.cr, racsa.co.cr, ice.co.cr, bncr.fi.cr, ccss.sa.cr, racsa.co.cr, costarricense.cr
+<domain $racsa>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+    dkim-sign yes
+</domain>
+
+
+domain-macro terra terra.com, terra.com.ar, terra.cl, terra.com.pe, terra.es, terra.com.mx, terra.com.br, terra.com.co, terra.com.uy, speedy.com.ar, speedy.com.pe, telefonica.net, infonegocio.com, infosel.net.mx, infosel.com.mx, terramail.com.pe, ctcinternet.cl, teleline.es, infovia.com.ar, satlink.com, ctcreuna.cl, overnet.com.ar, topmail.com.ar, infonegocio.com.pe, satlink.com.ar, cpsarg.com, ole.com, cv.cl, bancomer.com, telefonica.com.ar, repsol.com, telefonica.es, chilectra.cl, tsm.es, tsai.es, race.es, nh-hotels.com, bancopopular.es, databasedm.es, iies.es, advancedsl.com.ar
+<domain $terra>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+    dkim-sign yes
+</domain>
+
+domain-macro prodigy prodigy.net.mx, infinitum.com.mx, prodigymedia.com, infinitummail.com, correoinfinitum.com, infinitumzone.net, correoprodigy.com, ameritech.net, flash.net, pacbell.net, prodigy.com, prodigy.net, snet.net, swbell.net, telnor.net, uninet.net.mx
+<domain $prodigy>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+    dkim-sign yes
+</domain>
+
+
+domain-macro entelchile entelchile.net, 123mail.cl, entelchile.cl, 123.cl, 123click.cl, entel.cl, 123.com, nt.entel.cl, carabineros.cl, consorcio.cl, finning.cl, sqm.cl, dgac.cl, construmart.cl, abretumundo.cl, entelchile.com, agrosuper.com, cocha.com, minpublico.cl
+<domain $entelchile>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+	backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+    dkim-sign yes
+</domain>
+
+domain-macro avantel avantel.com.mx, avantel.net, avantel.net.mx, axtel.com.mx, hacienda.gob.mx, diconsa.gob.mx, insp.mx
+<domain $avantel>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro puc puc.cl, uc.cl, ing.puc.cl, alumni.uc.cl, med.puc.cl, ing.uc.cl, iglesia.cl, lascar.puc.cl
+<domain $puc>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro vtr vtr.net, mi-mail.cl, mi.cl, vtr.cl
+<domain $vtr>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro metrored metrored.mx, internet.com.mx, netmex.com, data.net.mx, mx.inter.net, psi.net.mx, cablecom.com.mx
+<domain $metrored>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro uol uol.com.mx, uol.cl, uolsinectis.com.ar, uol.com.ar, sinectis.com.ar, sion.com, datafull.com, sion.com.ar, uol.com.br, zip.net, uol.com
+<domain $uol>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro arnet radar.com.ar, telecom.com.ar, arnet.com.ar, lacaja.com.ar, arnetbiz.com.ar, ta.telecom.com.ar
+<domain $arnet>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro att att.net, bellsouth.net, attbroadband.com, attcanada.net, attnet.com, attworldnet.com, bellsouth.com, swbell.com, worldnet.att.net, attglobal.com, attglobal.net, att.com.mx
+<domain $att>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro wanadoo wanadoo.es, mixmail.com, eresmas.com, jet.es, jazzfree.com, ya.com, eresmas.net, ctv.es, orange.es, demasiado.com, telepolis.com, apdo.com, orangemail.es, uni2.es
+<domain $wanadoo>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro sedoparking sedoparking.com, guay.com, daz.com.ar, ze.cl, mecon.com.ar, interactive.com.ar, interactiva.cl, sinfo.net, lua.com.ar, tutopia.com.ar, upa.cl, ufasta.com.ar, unsa.com.ar, selectett.es, accesosis.es, cconline.es, globalnet.es, interplanet.es, iberonline.es
+<domain $sedoparking>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro telmex telmex.net.pe, bonus.com.pe, pucp.edu.pe, sunat.gob.pe, minedu.gob.pe, xploratelmex.com.pe, gym.com.pe, minsa.gob.pe, mef.gob.pe, ferreyros.com.pe, fasa.com.pe, ripley.com.pe, creditex.com.pe, mtc.gob.pe, mincetur.gob.pe, cmr.com.pe, sni.org.pe, bif.com.pe, bancomercio.com.pe, aduanet.gob.pe, sanpablo.com.pe, glencore.com.pe, cofide.com.pe, pcm.gob.pe, imarpe.gob.pe, epensa.com.pe, drokasa.com.pe, promperu.gob.pe, gruponuevomundo.com.pe, hersil.com.pe, adexperu.org.pe, sat.gob.pe, webtelmex.net.mx, telmex.net, telmex.com.mx, reduno.com.mx, telmexchile.cl, rhi.cl, chilesat.net, chilesat.cl, alemana.cl, telmexla.net.co, cable.net.co, telmex.com, telnor.com
+<domain $telmex>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro lycos mailcity.com, eudoramail.com, lycos.com, angelfire.com, lycos.es
+<domain $lycos>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro earthlink earthlink.net, netcom.com, jps.net, mindspring.com, thegrid.net, lightspeed.net, sprintmail.com
+<domain $earthlink>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro ono ono.com, supercable.es, ono.es, menta.net, auna.com, able.es, usuarios.retecal.es, retecal.es
+<domain $ono>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro fibertel fibertel.com.ar, cvtci.com.ar, citynet.net.ar, datamarkets.com.ar, lanet.com.ar, dynamo.com.ar
+<domain $fibertel>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro telecentro telecentro.com.ar, 2vias.com.ar
+<domain $telecentro>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro gmx mail.com, gmx.net, iname.com, email.com, caramail.com, usa.com, usa.net
+<domain $gmx>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro racsa ccss.sa.cr, ulatina.ac.cr, racsa.co.cr, costarricense.cr, ice.co.cr, bncr.fi.cr
+<domain $racsa>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro latinmail latinmail.com, starmedia.com
+<domain $latinmail>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+domain-macro voodoo voodoo.com, intermex.com.mx
+<domain $voodoo>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+<domain videotron.ca>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+<domain home.com>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  30/h
+    backoff-retry-after  30m
+</domain>
+
+<domain ukonline.co.uk>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain freemail.hu>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain operamail.com>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain okabsolute.com>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain viabcp.com>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain intercable.net>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain chilnet.cl>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain millicom.com.ar>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain ciudad.com.ar>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain pvnet.com.mx>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain televisa.com.mx>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain rcc.com.ar>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain impsat.com.ar>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain osde.com.ar>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain lanacion.com.ar>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain chile.com>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain amc.com.ar>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain sdm.net.mx>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain ec-red.com>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain arrakis.es>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain interlap.com.ar>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain crm.com.ar>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain mecon.gov.ar>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain disco.com.ar>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain megared.com.mx>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain amauta.rcp.net.pe>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain cordoba.com.ar>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain todito.com>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain tutopia.com>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain universia.edu.pe>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain bbvnet.com>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain iteso.mx>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain reuna.cl>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain cba.gov.ar>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain itesm.mx>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain elistas.net>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain netverk.com.ar>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain bancogalicia.com.ar>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain tp.com.pe>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain juno.com>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   10
+    max-rcpt-per-message 10
+    max-msg-per-connection   10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+<domain comcast.net>
+    max-msg-rate 250/h  # prevent "exceeded the rate limit"
+    max-smtp-out   2
+    max-rcpt-per-message 10
+    max-msg-per-connection   100
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+</domain>
+
+
+ <domain satnet.net>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m 
+</domain>
+
+
+ <domain uio.satnet.net>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain gye.satnet.net>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m 
+</domain>
+
+
+ <domain andinanet.net>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m 
+</domain>
+
+
+ <domain telefonica.com.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m 
+ </domain>
+
+
+ <domain vistazo.com>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+  </domain>
+
+
+ <domain man.cnel.gob.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m 
+ </domain>
+
+  <domain msp.gob.ec>
+    max-smtp-out   1
+    max-msg-per-connection   1
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  1/h
+    backoff-retry-after  30m 
+ </domain>
+ 
+ <domain mrl.gob.ec>
+    max-smtp-out   1
+    max-msg-per-connection   1
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  1/h
+    backoff-retry-after  30m 
+ </domain>
+
+  <domain ant.gob.ec>
+    max-smtp-out   1
+    max-msg-per-connection   1
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  1/h
+    backoff-retry-after  30m 
+ </domain>
+
+  <domain cgg.gob.ec>
+    max-smtp-out   1
+    max-msg-per-connection   1
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  1/h
+    backoff-retry-after  30m 
+ </domain>
+
+  <domain dpsp.gob.ec>
+    max-smtp-out   1
+    max-msg-per-connection   1
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  1/h
+    backoff-retry-after  30m 
+ </domain>
+ 
+ <domain glr.cnel.gob.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m 
+ </domain>
+
+
+ <domain tia.com.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m 
+ </domain>
+
+
+ <domain correosdelecuador.com.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+  </domain>
+
+
+ <domain sipec.com.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m 
+ </domain>
+
+
+ <domain telefonica.com>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain pelikano.com>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain offsetec.com>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain eor.cnel.gob.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain bncr.fi.cr>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain prc.com.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain esm.cnel.gob.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain ec.bureauveritas.com>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+
+ </domain>
+
+
+ <domain segob.gob.mx>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain cnel.gob.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain mlg.cnel.gob.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain intaco.com>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain bosch.com.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain copaair.com>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain ecuatronix.com.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain norma.com.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain latin-gaming.com>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain lrs.cnel.gob.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain investamar.com.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain carvajal.com.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain sistran.com.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain pi.pro.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain access.net.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain accessinter.net>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain gu.pro.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain bankguay.com>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain ucsg.edu.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain ug.edu.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain usm.edu.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain loja.telconet.net>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain unidas.com.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain tu.pro.ec>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain eesaci.com>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain univision.com>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+
+ <domain aim.com>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    smtp-421-means-mx-unavailable yes
+    mx-connection-attempts 10 
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  100/h
+    backoff-retry-after  30m
+ </domain>
+
+ <domain icloud.rollup>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+
+ <domain grovecity.k12.pa.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+
+ <domain suffolkva.us>
+    max-smtp-out   20
+    max-msg-per-connection   100
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+
+ <domain bcsb.net>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain peelsb.com>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain york.ca>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain clayton.k12.ga.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain sonorahs.k12.ca.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain vicad.com>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain okee.k12.fl.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain dalton.k12.ga.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain milwaukee.k12.wi.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain nfpa.org>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain metrocast.net>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain centre.edu>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain abington.k12.pa.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain cdschools.org>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain troycsd.org>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain salkeiz.k12.or.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain coquille.k12.or.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain wlwv.k12.or.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain mtsinai.k12.ny.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain weleetka.k12.ok.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain seeworthacademy.org>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain defense.rollup>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+	smtp-hosts lookup-mx:newnet66.org
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain eacs.k12.in.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+
+<domain pcschools.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain hamilton.k12.wi.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain durand.k12.wi.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain valders.k12.wi.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain mpls.k12.mn.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain wheaton.k12.mn.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain florencek12.org>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain henry.k12.ga.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain plymouth.k12.wi.us>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain thezonelive.com>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+<domain durantisd.org>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+
+<domain symantec-us.rollup>
+    max-smtp-out   2
+    max-msg-per-connection   10
+    mx-connection-attempts 10
+	smtp-hosts lookup-mx:messagelabs.com
+    backoff-to-normal-after 2h
+    backoff-max-msg-rate  6/h
+    backoff-retry-after  30m
+        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        use-starttls yes
+
+    dkim-sign yes
+</domain>
+
+# default domain settings
+<domain *>
+  max-smtp-out 2  # default be nice on concurrent connections
+  max-msg-per-connection 10
+  max-errors-per-connection 10  # avoid 'too long without data command' error
+  max-msg-rate 250/h  # Powermta Sending Limit
+  ignore-chunking yes
+  smtp-greeting-timeout 5m
+  backoff-to-normal-after 4h
+  backoff-max-msg-rate 6/h
+  backoff-retry-after 30m
+  bounce-upon-no-mx yes  # proper mail domains should have mx
+  assume-delivery-upon-data-termination-timeout yes  # avoid duplicate deliveries
+  retry-after 10m  # typical greylisting period
+  bounce-after 5d  # default 4d12h
+  smtp-pattern-list blocking-errors
+  backoff-max-msg-rate 1/m  # send only regular tries during backoff (default unlimited)
+  backoff-retry-after 30m  # retry at least every 20m (default 1h)
+  backoff-to-normal-after-delivery yes  # revert to normal asap (default no)
+  backoff-to-normal-after 1h  # always revert to normal after 1h (default never)
+  dkim-sign yes
+    use-starttls yes
+    require-starttls no
+  ignore-8bitmime true
+</domain>
+
+<domain [*.]port25.com>
+    dkim-sign yes               # to facilitate support
+</domain>
+
+<domain {sparkpost}>
+    auth-username SMTP_Injection
+    smtp-hosts smtp.sparkpostmail.com:587
+    add-x-msys-api-header yes
+    use-starttls yes
+    require-starttls yes
+</domain>
+
+############################################################################
+# END: ISP rules
+############################################################################
+
+############################################################################
+# BEGIN: BACKOFF RULES
+############################################################################
+
+<smtp-pattern-list common-errors>
+reply /generating high volumes of.* complaints from AOL/ mode=backoff
+reply /Excessive unknown recipients - possible Open Relay/ mode=backoff
+reply /^421 .* too many errors/ mode=backoff
+reply /blocked.*spamhaus/ mode=backoff
+reply /451 Rejected/ mode=backoff
+</smtp-pattern-list>
+
+<smtp-pattern-list blocking-errors>
+reply /421 .* SERVICE NOT AVAILABLE/ mode=backoff
+reply /generating high volumes of.* complaints from AOL/ mode=backoff
+reply /554 .*aol.com/ mode=backoff
+reply /421dynt1/ mode=backoff
+reply /HVU:B1/ mode=backoff
+reply /DNS:NR/ mode=backoff
+reply /RLY:NW/ mode=backoff
+reply /DYN:T1/ mode=backoff
+reply /RLY:BD/ mode=backoff
+reply /RLY:CH2/ mode=backoff
+reply /421 .* Please try again later/ mode=backoff
+reply /421 Message temporarily deferred/ mode=backoff
+reply /421 .* temporarily deferred due to user complaints/ mode=backoff
+reply /VS3-IP5 Excessive unknown recipients/ mode=backoff
+reply /VSS-IP Excessive unknown recipients/ mode=backoff
+reply /\[GL01\] Message from/ mode=backoff
+reply /\[TS01\] Messages from/ mode=backoff
+reply /\[TS02\] Messages from/ mode=backoff
+reply /\[TS03\] All messages from/ mode=backoff
+reply /exceeded the rate limit/ mode=backoff
+reply /exceeded the connection limit/ mode=backoff
+reply /Mail rejected by Windows Live Hotmail for policy reasons/ mode=backoff
+reply /mail.live.com\/mail\/troubleshooting.aspx/ mode=backoff
+reply /421 Message Rejected/ mode=backoff
+reply /Client host rejected/ mode=backoff
+reply /blocked using UCEProtect/ mode=backoff
+reply /Mail Refused/ mode=backoff
+reply /421 Exceeded allowable connection time/ mode=backoff
+reply /amIBlockedByRR/ mode=backoff
+reply /block-lookup/ mode=backoff
+reply /Too many concurrent connections from source IP/ mode=backoff
+reply /too many/ mode=backoff
+reply /Exceeded allowable connection time/ mode=backoff
+reply /Connection rate limit exceeded/ mode=backoff
+reply /refused your connection/ mode=backoff
+reply /try again later/ mode=backoff
+reply /try later/ mode=backoff
+reply /550 RBL/ mode=backoff
+reply /TDC internal RBL/ mode=backoff
+reply /connection refused/ mode=backoff
+reply /please see www.spamhaus.org/ mode=backoff
+reply /Message Rejected/ mode=backoff
+reply /refused by antispam/ mode=backoff
+reply /Service not available/ mode=backoff
+reply /currently blocked/ mode=backoff
+reply /locally blacklisted/ mode=backoff
+reply /not currently accepting mail from your ip/ mode=backoff
+reply /421.*closing connection/ mode=backoff
+reply /421.*Lost connection/ mode=backoff
+reply /476 connections from your host are denied/ mode=backoff
+reply /421 Connection cannot be established/ mode=backoff
+reply /421 temporary envelope failure/ mode=backoff
+reply /421 4.4.2 Timeout while waiting for command/ mode=backoff
+reply /450 Requested action aborted/ mode=backoff
+reply /550 Access denied/ mode=backoff
+reply /exceeded the rate limit/ mode=backoff
+reply /421rlynw/ mode=backoff
+reply /permanently deferred/ mode=backoff
+reply /\d+\.\d+\.\d+\.\d+ blocked/ mode=backoff
+reply /www\.spamcop\.net\/bl\.shtml/ mode=backoff
+reply /generating high volumes of.* complaints from AOL/ mode=backoff
+reply /Excessive unknown recipients - possible Open Relay/ mode=backoff
+reply /^421 .* too many errors/ mode=backoff
+reply /blocked.*spamhaus/ mode=backoff
+reply /451 Rejected/ mode=backoff
+reply /421 .* Our system has detected/ mode=backoff
+reply /Maximum of 10 recipient errors detected/ mode=backoff
+reply /421 .* Intrusion prevention active/ mode=backoff
+reply /421 .* Too many messages for this session/ mode=backoff
+reply /451 .* Server busy/ mode=backoff
+reply /451 .* Please try again later/ mode=backoff
+reply /452 Too many recipients received this hour/ mode=backoff
+</smtp-pattern-list>
+
+############################################################################
+# END: BACKOFF RULES
+############################################################################
+
+############################################################################
+# BEGIN: BOUNCE RULES
+############################################################################
+
+<bounce-category-patterns>
+/^2.\d+.\d+;/ success
+/spam/ spam-related
+/554 delivery/ inactive-mailbox
+/junk mail/ spam-related
+/blacklist/ spam-related
+/blocked/ spam-related
+/\bU\.?C\.?E\.?\b/ spam-related
+/\bAdv(ertisements?)?\b/ spam-related
+/unsolicited/ spam-related
+/\b(open)?RBL\b/ spam-related
+/realtime blackhole/ spam-related
+/http:\/\/basic.wirehub.nl\/blackholes.html/ spam-related
+/\bvirus\b/ virus-related
+/message +content/ content-related
+/content +rejected/ content-related
+/quota/ quota-issues
+/limit exceeded/ quota-issues
+/mailbox +(is +)?full/ quota-issues
+/sender ((verify|verification) failed|could not be verified|address rejected|domain must exist)/ invalid-sender
+/unable to verify sender/ invalid-sender
+/requires valid sender domain/ invalid-sender
+/bad sender's system address/ invalid-sender
+/No MX for envelope sender domain/ invalid-sender
+/^[45]\.4\.4/ routing-errors
+/Your domain has no(t)? DNS\/MX entries/ invalid-sender
+/REQUESTED ACTION NOT TAKEN: DNS FAILURE/ invalid-sender
+/Domain of sender address/ invalid-sender
+/return MX does not exist/ invalid-sender
+/Invalid sender domain/ invalid-sender
+/Verification failed/ invalid-sender
+/\bstorage\b/ quota-issues
+/(user|mailbox|recipient|rcpt|local part|address|account|mail drop|ad(d?)ressee) (has|has been|is)? *(currently|temporarily 
++)?(disabled|expired|inactive|not activated)/ inactive-mailbox
+/(conta|usu.rio) inativ(a|o)/ inactive-mailbox
+/Too many (bad|invalid|unknown|illegal|unavailable) (user|mailbox|recipient|rcpt|local part|address|account|mail drop|ad(d?)ressee)/ other
+/(No such|bad|invalid|unknown|illegal|unavailable) (local +)?(user|mailbox|recipient|rcpt|local part|address|account|mail drop|ad(d?)ressee)/ bad-mailbox
+/(user|mailbox|recipient|rcpt|local part|address|account|mail drop|ad(d?)ressee) +(\S+@\S+ +)?(not (a +)?valid|not known|not here|not found|does not 
+exist|bad|invalid|unknown|illegal|unavailable)/ bad-mailbox
+/\S+@\S+ +(is +)?(not (a +)?valid|not known|not here|not found|does not exist|bad|invalid|unknown|illegal|unavailable)/ bad-mailbox
+/no mailbox here by that name/ bad-mailbox
+/my badrcptto list/ bad-mailbox
+/not our customer/ bad-mailbox
+/no longer (valid|available)/ bad-mailbox
+/Recipient address rejected/ bad-mailbox
+/The email account that you tried to reach does not exist/ bad-mailbox
+/have a \S+ account/ bad-mailbox
+/\brelay(ing)?/ relaying-issues
+/domain (retired|bad|invalid|unknown|illegal|unavailable)/ bad-domain
+/domain no longer in use/ bad-domain
+/domain (\S+ +)?(is +)?obsolete/ bad-domain
+/StatusDnsQueryFailed/ bad-domain
+/domain (\S+ +)?(is +)?obsolete/ bad-domain
+/denied/ policy-related
+/prohibit/ policy-related
+/rejected/ policy-related
+/refused/ policy-related
+/allowed/ policy-related
+/banned/ policy-related
+/policy/ policy-related
+/suspicious activity/ policy-related
+/bad sequence/ protocol-errors
+/syntax error/ protocol-errors
+/\broute\b/ routing-errors
+/\bunroutable\b/ routing-errors
+/\bunrouteable\b/ routing-errors
+/Invalid 7bit DATA/ content-related
+/^2.\d.\d/ success
+/^[45]\.1\.[1346];/ bad-mailbox
+/^[45]\.1\.1/ bad-mailbox
+/^[45]\.1\.2/ bad-domain
+/^[45]\.2\.0;/ bad-mailbox
+/^[45]\.2\.1;/ inactive-mailbox
+/^[45]\.2\.2;/ quota-issues
+/^[45]\.3\.5/ bad-configuration
+/^[45]\.4\.1/ no-answer-from-host
+/^[45]\.4\.2/ bad-connection
+/^[45]\.4\.[36];/ routing-errors
+/^[45]\.4\.7/ message-expired
+/^[45]\.5\.\d+;/ protocol-errors
+/^[45]\.7\.1/ policy-related
+// other    # catch-all
+/failed\,5\.0\.0 \(undefined status\)\,x\-pmta\;bounce\-queue/ policy-related
+</bounce-category-patterns>
+
+############################################################################
+# END: BOUNCE RULES
+############################################################################
