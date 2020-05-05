@@ -27,6 +27,7 @@ mx *.newnet66.org defense.rollup
 mx *.olc.protection.outlook.com outlook.rollup
 mx *.mail.protection.outlook.com outlook.rollup
 mx *.us.messagelabs.com symantec-us.rollup
+mx smtp-in.orange.fr orange.rollup
 </mx-rollup-list>
 
 ############################################################################
@@ -39,38 +40,94 @@ mx *.us.messagelabs.com symantec-us.rollup
 
 <domain cox.net>
     max-smtp-out 5
+    max-msg-rate 250/h
+    max-rcpt-per-message 10
+    max-msg-per-connection 10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-max-msg-rate  30/h
+    backoff-to-normal-after 2h
+    backoff-retry-after  30m
+    dkim-sign yes
+    use-starttls yes
+    require-starttls no
 </domain>
 
 <domain att.net>
     max-smtp-out 2
+    max-msg-rate 250/h
+    max-rcpt-per-message 10
+    max-msg-per-connection 10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-max-msg-rate  30/h
+    backoff-to-normal-after 2h
+    backoff-retry-after  30m
+    dkim-sign yes
+    use-starttls yes
+    require-starttls no
 </domain>
 
 <domain adelphia.net>
     max-smtp-out 4
+    max-msg-rate 250/h
+    max-rcpt-per-message 10
+    max-msg-per-connection 10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-max-msg-rate  30/h
+    backoff-to-normal-after 2h
+    backoff-retry-after  30m
+    dkim-sign yes
+    use-starttls yes
+    require-starttls no
 </domain>
 
 <domain bellsouth.net>
     max-smtp-out 10
+    max-msg-rate 250/h
+    max-rcpt-per-message 10
     max-msg-per-connection 1
     retry-after 5m
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-max-msg-rate  30/h
+    backoff-to-normal-after 2h
+    backoff-retry-after  30m
+    dkim-sign yes
+    use-starttls yes
+    require-starttls no
 </domain>
 
 <domain mac.com>
+    max-smtp-out 4
+    max-msg-rate 250/h
+    max-rcpt-per-message 10
+    max-msg-per-connection 10
+    max-errors-per-connection 4
+    max-connect-rate 5/m
+    backoff-max-msg-rate  30/h
+    backoff-to-normal-after 2h
+    backoff-retry-after  30m
     ignore-chunking yes
+    dkim-sign yes
+    use-starttls yes
+    require-starttls no
 </domain>
 
-<domain orange.fr>
+<domain orange.rollup>
     max-smtp-out 1
     max-msg-rate 1000/m
     max-connect-rate 10/m
     max-msg-per-connection 100
-</domain>
-
-<domain wanadoo.fr>
-    max-smtp-out 1
-    max-msg-rate 1000/m
-    max-connect-rate 10/m
-    max-msg-per-connection 100
+    max-rcpt-per-message 10
+    max-errors-per-connection 4
+    backoff-max-msg-rate  30/h
+    backoff-to-normal-after 2h
+    backoff-retry-after  30m
+    dkim-sign yes
+    use-starttls yes
+    require-starttls no
 </domain>
 
 # domains that resolve to mx?.hotmail.com
@@ -1458,11 +1515,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 
@@ -1471,11 +1527,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 
@@ -1484,11 +1539,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   100
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 
@@ -1497,11 +1551,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain peelsb.com>
@@ -1509,11 +1562,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain york.ca>
@@ -1521,11 +1573,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain clayton.k12.ga.us>
@@ -1533,11 +1584,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain sonorahs.k12.ca.us>
@@ -1545,11 +1595,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain vicad.com>
@@ -1557,11 +1606,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain okee.k12.fl.us>
@@ -1569,11 +1617,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain dalton.k12.ga.us>
@@ -1581,11 +1628,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain milwaukee.k12.wi.us>
@@ -1593,11 +1639,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain nfpa.org>
@@ -1605,11 +1650,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain metrocast.net>
@@ -1617,11 +1661,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain centre.edu>
@@ -1629,11 +1672,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain abington.k12.pa.us>
@@ -1641,11 +1683,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain cdschools.org>
@@ -1653,11 +1694,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain troycsd.org>
@@ -1665,11 +1705,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain salkeiz.k12.or.us>
@@ -1677,11 +1716,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain coquille.k12.or.us>
@@ -1689,11 +1727,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain wlwv.k12.or.us>
@@ -1701,11 +1738,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain mtsinai.k12.ny.us>
@@ -1713,11 +1749,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain weleetka.k12.ok.us>
@@ -1725,11 +1760,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain seeworthacademy.org>
@@ -1737,11 +1771,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain defense.rollup>
@@ -1750,11 +1783,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     mx-connection-attempts 10
 	smtp-hosts lookup-mx:newnet66.org
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain eacs.k12.in.us>
@@ -1762,11 +1794,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 
@@ -1775,11 +1806,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain hamilton.k12.wi.us>
@@ -1787,11 +1817,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain durand.k12.wi.us>
@@ -1799,11 +1828,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain valders.k12.wi.us>
@@ -1811,11 +1839,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain mpls.k12.mn.us>
@@ -1823,11 +1850,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain wheaton.k12.mn.us>
@@ -1835,11 +1861,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain florencek12.org>
@@ -1847,11 +1872,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain henry.k12.ga.us>
@@ -1859,11 +1883,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain plymouth.k12.wi.us>
@@ -1871,11 +1894,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain thezonelive.com>
@@ -1883,11 +1905,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 <domain durantisd.org>
@@ -1895,11 +1916,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     max-msg-per-connection   10
     mx-connection-attempts 10
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 
@@ -1909,11 +1929,10 @@ domain-macro voodoo voodoo.com, intermex.com.mx
     mx-connection-attempts 10
 	smtp-hosts lookup-mx:messagelabs.com
     backoff-to-normal-after 2h
-    backoff-max-msg-rate  6/h
+    backoff-max-msg-rate  30/h
     backoff-retry-after  30m
-        max-msg-rate 30/h  # prevent "exceeded the rate limit"
+        max-msg-rate 250/h  # prevent "exceeded the rate limit"
         use-starttls yes
-
     dkim-sign yes
 </domain>
 
@@ -1934,7 +1953,7 @@ domain-macro voodoo voodoo.com, intermex.com.mx
   bounce-after 5d  # default 4d12h
   smtp-pattern-list blocking-errors
   backoff-max-msg-rate 1/m  # send only regular tries during backoff (default unlimited)
-  backoff-retry-after 30m  # retry at least every 20m (default 1h)
+  backoff-retry-after 30m  # retry at least every 30m (default 1h)
   backoff-to-normal-after-delivery yes  # revert to normal asap (default no)
   backoff-to-normal-after 1h  # always revert to normal after 1h (default never)
   dkim-sign yes
