@@ -126,212 +126,212 @@ dkim-sign yes
 </domain>
 
  
-<virtual-mta pmta-vmta1>
-smtp-source-host xx.xx.xx.x1 mta1.domain.com
-domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
-<domain *>
-max-cold-virtual-mta-msg 24000/day
-max-msg-rate 20/h
-dkim-sign yes
-</domain>
-</virtual-mta>
-<domain mta1.domain.com>
-</domain>
+#<virtual-mta pmta-vmta1>
+#smtp-source-host xx.xx.xx.x1 mta1.domain.com
+#domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
+#<domain *>
+#max-cold-virtual-mta-msg 24000/day
+#max-msg-rate 20/h
+#dkim-sign yes
+#</domain>
+#</virtual-mta>
+#<domain mta1.domain.com>
+#</domain>
  
  
-<virtual-mta pmta-vmta2>
-smtp-source-host xx.xx.xx.x2 mta2.domain.com
-domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
-<domain *>
-max-cold-virtual-mta-msg 24000/day
-max-msg-rate 20/h
-dkim-sign yes
-</domain>
-</virtual-mta>
-<domain mta2.domain.com>
-</domain>
+#<virtual-mta pmta-vmta2>
+#smtp-source-host xx.xx.xx.x2 mta2.domain.com
+#domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
+#<domain *>
+#max-cold-virtual-mta-msg 24000/day
+#max-msg-rate 20/h
+#dkim-sign yes
+#</domain>
+#</virtual-mta>
+#<domain mta2.domain.com>
+#</domain>
  
  
-<virtual-mta pmta-vmta3>
-smtp-source-host xx.xx.xx.x3 mta3.domain.com
-domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
-<domain *>
-max-cold-virtual-mta-msg 24000/day
-max-msg-rate 20/h
-dkim-sign yes
-</domain>
-</virtual-mta>
-<domain mta3.domain.com>
-</domain>
+#<virtual-mta pmta-vmta3>
+#smtp-source-host xx.xx.xx.x3 mta3.domain.com
+#domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
+#<domain *>
+#max-cold-virtual-mta-msg 24000/day
+#max-msg-rate 20/h
+#dkim-sign yes
+#</domain>
+#</virtual-mta>
+#<domain mta3.domain.com>
+#</domain>
  
  
-<virtual-mta pmta-vmta4>
-smtp-source-host xx.xx.xx.x4 mta4.domain.com
-domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
-<domain *>
-max-cold-virtual-mta-msg 24000/day
-max-msg-rate 20/h
-dkim-sign yes
-</domain>
-</virtual-mta>
-<domain mta4.domain.com>
-</domain>
+#<virtual-mta pmta-vmta4>
+#smtp-source-host xx.xx.xx.x4 mta4.domain.com
+#domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
+#<domain *>
+#max-cold-virtual-mta-msg 24000/day
+#max-msg-rate 20/h
+#dkim-sign yes
+#</domain>
+#</virtual-mta>
+#<domain mta4.domain.com>
+#</domain>
  
  
-<virtual-mta pmta-vmta5>
-smtp-source-host xx.xx.xx.x5 mta5.domain.com
-domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
-<domain *>
-max-cold-virtual-mta-msg 24000/day
-max-msg-rate 20/h
-dkim-sign yes
-</domain>
-</virtual-mta>
-<domain mta5.domain.com>
-</domain>
+#<virtual-mta pmta-vmta5>
+#smtp-source-host xx.xx.xx.x5 mta5.domain.com
+#domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
+#<domain *>
+#max-cold-virtual-mta-msg 24000/day
+#max-msg-rate 20/h
+#dkim-sign yes
+#</domain>
+#</virtual-mta>
+#<domain mta5.domain.com>
+#</domain>
  
  
-<virtual-mta pmta-vmta6>
-smtp-source-host xx.xx.xx.x6 mta6.domain.com
-domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
-<domain *>
-max-cold-virtual-mta-msg 24000/day
-max-msg-rate 20/h
-dkim-sign yes
-</domain>
-</virtual-mta>
-<domain mta6.domain.com>
-</domain>
+#<virtual-mta pmta-vmta6>
+#smtp-source-host xx.xx.xx.x6 mta6.domain.com
+#domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
+#<domain *>
+#max-cold-virtual-mta-msg 24000/day
+#max-msg-rate 20/h
+#dkim-sign yes
+#</domain>
+#</virtual-mta>
+#<domain mta6.domain.com>
+#</domain>
  
  
-<virtual-mta pmta-vmta7>
-smtp-source-host xx.xx.xx.x7 mta7.domain.com
-domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
-<domain *>
-max-cold-virtual-mta-msg 24000/day
-max-msg-rate 20/h
-dkim-sign yes
-</domain>
-</virtual-mta>
-<domain mta7.domain.com>
-</domain>
+#<virtual-mta pmta-vmta7>
+#smtp-source-host xx.xx.xx.x7 mta7.domain.com
+#domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
+#<domain *>
+#max-cold-virtual-mta-msg 24000/day
+#max-msg-rate 20/h
+#dkim-sign yes
+#</domain>
+#</virtual-mta>
+#<domain mta7.domain.com>
+#</domain>
  
  
-<virtual-mta pmta-vmta8>
-smtp-source-host xx.xx.xx.x8 mta8.domain.com
-domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
-<domain *>
-max-cold-virtual-mta-msg 24000/day
-max-msg-rate 20/h
-dkim-sign yes
-</domain>
-</virtual-mta>
-<domain mta8.domain.com>
-</domain>
+#<virtual-mta pmta-vmta8>
+#smtp-source-host xx.xx.xx.x8 mta8.domain.com
+#domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
+#<domain *>
+#max-cold-virtual-mta-msg 24000/day
+#max-msg-rate 20/h
+#dkim-sign yes
+#</domain>
+#</virtual-mta>
+#<domain mta8.domain.com>
+#</domain>
  
  
-<virtual-mta pmta-vmta9>
-smtp-source-host xx.xx.xx.x9 mta9.domain.com
-domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
-<domain *>
-max-cold-virtual-mta-msg 24000/day
-max-msg-rate 20/h
-dkim-sign yes
-</domain>
-</virtual-mta>
-<domain mta9.domain.com>
-</domain>
+#<virtual-mta pmta-vmta9>
+#smtp-source-host xx.xx.xx.x9 mta9.domain.com
+#domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
+#<domain *>
+#max-cold-virtual-mta-msg 24000/day
+#max-msg-rate 20/h
+#dkim-sign yes
+#</domain>
+#</virtual-mta>
+#<domain mta9.domain.com>
+#</domain>
  
  
-<virtual-mta pmta-vmta10>
-smtp-source-host xx.xx.xx.10 mta10.domain.com
-domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
-<domain *>
-max-cold-virtual-mta-msg 24000/day
-max-msg-rate 20/h
-dkim-sign yes
-</domain>
-</virtual-mta>
-<domain mta10.domain.com>
-</domain>
+#<virtual-mta pmta-vmta10>
+#smtp-source-host xx.xx.xx.10 mta10.domain.com
+#domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
+#<domain *>
+#max-cold-virtual-mta-msg 24000/day
+#max-msg-rate 20/h
+#dkim-sign yes
+#</domain>
+#</virtual-mta>
+#<domain mta10.domain.com>
+#</domain>
  
  
-<virtual-mta pmta-vmta11>
-smtp-source-host xx.xx.xx.11 mta11.domain.com
-domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
-<domain *>
-max-cold-virtual-mta-msg 24000/day
-max-msg-rate 20/h
-dkim-sign yes
-</domain>
-</virtual-mta>
-<domain mta11.domain.com>
-</domain>
+#<virtual-mta pmta-vmta11>
+#smtp-source-host xx.xx.xx.11 mta11.domain.com
+#domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
+#<domain *>
+#max-cold-virtual-mta-msg 24000/day
+#max-msg-rate 20/h
+#dkim-sign yes
+#</domain>
+#</virtual-mta>
+#<domain mta11.domain.com>
+#</domain>
  
  
-<virtual-mta pmta-vmta12>
-smtp-source-host xx.xx.xx.12 mta12.domain.com
-domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
-<domain *>
-max-cold-virtual-mta-msg 24000/day
-max-msg-rate 20/h
-dkim-sign yes
-</domain>
-</virtual-mta>
-<domain mta12.domain.com>
-</domain>
+#<virtual-mta pmta-vmta12>
+#smtp-source-host xx.xx.xx.12 mta12.domain.com
+#domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
+#<domain *>
+#max-cold-virtual-mta-msg 24000/day
+#max-msg-rate 20/h
+#dkim-sign yes
+#</domain>
+#</virtual-mta>
+#<domain mta12.domain.com>
+#</domain>
  
  
-<virtual-mta pmta-vmta13>
-smtp-source-host xx.xx.xx.13 mta13.domain.com
-domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
-<domain *>
-max-cold-virtual-mta-msg 24000/day
-max-msg-rate 20/h
-dkim-sign yes
-</domain>
-</virtual-mta>
-<domain mta13.domain.com>
-</domain>
+#<virtual-mta pmta-vmta13>
+#smtp-source-host xx.xx.xx.13 mta13.domain.com
+#domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
+#<domain *>
+#max-cold-virtual-mta-msg 24000/day
+#max-msg-rate 20/h
+#dkim-sign yes
+#</domain>
+#</virtual-mta>
+#<domain mta13.domain.com>
+#</domain>
  
  
-<virtual-mta pmta-vmta14>
-smtp-source-host xx.xx.xx.14 mta14.domain.com
-domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
-<domain *>
-max-cold-virtual-mta-msg 24000/day
-max-msg-rate 20/h
-dkim-sign yes
-</domain>
-</virtual-mta>
-<domain mta14.domain.com>
-</domain>
+#<virtual-mta pmta-vmta14>
+#smtp-source-host xx.xx.xx.14 mta14.domain.com
+#domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
+#<domain *>
+#max-cold-virtual-mta-msg 24000/day
+#max-msg-rate 20/h
+#dkim-sign yes
+#</domain>
+#</virtual-mta>
+#<domain mta14.domain.com>
+#</domain>
  
  
-<virtual-mta pmta-vmta15>
-smtp-source-host xx.xx.xx.15 mta15.domain.com
-domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
-<domain *>
-max-cold-virtual-mta-msg 24000/day
-max-msg-rate 20/h
-dkim-sign yes
-</domain>
-</virtual-mta>
-<domain mta15.domain.com>
-</domain>
+#<virtual-mta pmta-vmta15>
+#smtp-source-host xx.xx.xx.15 mta15.domain.com
+#domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
+#<domain *>
+#max-cold-virtual-mta-msg 24000/day
+#max-msg-rate 20/h
+#dkim-sign yes
+#</domain>
+#</virtual-mta>
+#<domain mta15.domain.com>
+#</domain>
  
  
-<virtual-mta pmta-vmta16>
-smtp-source-host xx.xx.xx.16 mta16.domain.com
-domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
-<domain *>
-max-cold-virtual-mta-msg 24000/day
-max-msg-rate 20/h
-dkim-sign yes
-</domain>
-</virtual-mta>
-<domain mta16.domain.com>
-</domain>
+#<virtual-mta pmta-vmta16>
+#smtp-source-host xx.xx.xx.16 mta16.domain.com
+#domain-key 2020,domain.com,/etc/pmta/domain.com-dkim.key
+#<domain *>
+#max-cold-virtual-mta-msg 24000/day
+#max-msg-rate 20/h
+#dkim-sign yes
+#</domain>
+#</virtual-mta>
+#<domain mta16.domain.com>
+#</domain>
 
 <virtual-mta-pool pmta-pool>
 virtual-mta pmta-vmta0
