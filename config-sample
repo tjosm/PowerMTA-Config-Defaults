@@ -9,7 +9,7 @@ domain-key 2022,*,/etc/pmta/domain.com-dkim.key
 smtp-listener 0/0:2525 
 
 <source X.X.X.X>
-    always-allow-relaying yes   # allow feeding from 102.202.33.6
+    always-allow-relaying yes   # allow feeding from X.X.X.X
     process-x-virtual-mta yes   # allow selection of a virtual MTA
     max-message-size unlimited  # 0 implies no cap, in bytes
     smtp-service yes            # allow SMTP service
