@@ -68,11 +68,6 @@ password vip1caa6e9fac9c
 source {pmta-auth1} 
 </smtp-user>
 
-#<smtp-user contact> 
-#password vip1caa6e9fac9c
-#source {pmta-auth2} 
-#</smtp-user>
-
 <source {pmta-auth1}>
     smtp-service yes
     always-allow-relaying yes
@@ -85,6 +80,11 @@ source {pmta-auth1}
 	process-x-job yes
     remove-header X-PreviewEmail,X-Mailer,X-Mailer-RecptId,X-Mailer-Sent-By,X-Priority
 </source>
+
+#<smtp-user contact> 
+#password vip1caa6e9fac9c
+#source {pmta-auth2} 
+#</smtp-user>
 
 #<source {pmta-auth2}>
 #    smtp-service yes
