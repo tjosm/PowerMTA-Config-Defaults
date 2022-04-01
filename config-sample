@@ -1,8 +1,8 @@
-host-name mta.domain.com
+############################################################################
+# BEGIN: GENERAL OPTIONS
+############################################################################
 
-############################################################################
-# BEGIN: OTHER OPTIONS
-############################################################################
+host-name mta.domain.com
 
 postmaster abuse@domain.com
 domain-key 2022,*,/etc/pmta/domain.com-dkim.key
@@ -56,25 +56,11 @@ http-mgmt-port 8080
 http-access 0/0 monitor
 
 ############################################################################
-# END: OTHER OPTIONS
+# END: GENERAL OPTIONS
 ############################################################################
 
 ############################################################################
-# BEGIN: MailWizz Bounce Handler
-############################################################################
-
-#<acct-file |/usr/bin/php /opt/pmta/bouncehandler/bouncehandler.php>
-#    records b
-#    record-fields b timeQueued,bounceCat,vmta,orig,rcpt,srcMta,dlvSourceIp,jobId,dsnStatus,dsnMta,dsnDiag
-#</acct-file>
-
-############################################################################
-# END: MailWizz Bounce Handler
-############################################################################
-
-
-############################################################################
-# BEGIN: USERS/VIRTUAL-MTA / VIRTUAL-MTA-POOL / VIRTUAL-PMTA-PATTERN
+# BEGIN: USERS
 ############################################################################
 
 <smtp-user contact> 
@@ -112,6 +98,14 @@ source {pmta-auth1}
 #	process-x-job yes
 #    remove-header X-PreviewEmail,X-Mailer,X-Mailer-RecptId,X-Mailer-Sent-By,X-Priority
 #</source>
+
+############################################################################
+# END: USERS
+############################################################################
+
+############################################################################
+# BEGIN: VIRTUAL-MTA
+############################################################################
 
 <virtual-mta pmta-vmta0>
 smtp-source-host xx.xx.xx.x0 mta0.domain.com
@@ -333,6 +327,14 @@ dkim-sign yes
 #<domain mta16.domain.com>
 #</domain>
 
+############################################################################
+# END: VIRTUAL-MTA
+############################################################################
+
+############################################################################
+# BEGIN: VIRTUAL-MTA-POOL
+############################################################################
+
 <virtual-mta-pool pmta-pool>
 virtual-mta pmta-vmta0
 </virtual-mta-pool>
@@ -375,6 +377,14 @@ virtual-mta pmta-vmta16
 #virtual-mta pmta-vmta16
 #</virtual-mta-pool>
 
+############################################################################
+# END: VIRTUAL-MTA-POOL
+############################################################################
+
+############################################################################
+# BEGIN: VIRTUAL-PMTA-PATTERN
+############################################################################
+
 <pattern-list pmta-pattern>
 mail-from /@mta0.domain.com/ virtual-mta=pmta-vmta0
 mail-from /@mta1.domain.com/ virtual-mta=pmta-vmta1
@@ -394,3 +404,20 @@ mail-from /@mta14.domain.com/ virtual-mta=pmta-vmta14
 mail-from /@mta15.domain.com/ virtual-mta=pmta-vmta15
 mail-from /@mta16.domain.com/ virtual-mta=pmta-vmta16
 </pattern-list>
+
+############################################################################
+# END: VIRTUAL-PMTA-PATTERN
+############################################################################
+
+############################################################################
+# BEGIN: MailWizz Bounce Handler
+############################################################################
+
+#<acct-file |/usr/bin/php /opt/pmta/bouncehandler/bouncehandler.php>
+#    records b
+#    record-fields b timeQueued,bounceCat,vmta,orig,rcpt,srcMta,dlvSourceIp,jobId,dsnStatus,dsnMta,dsnDiag
+#</acct-file>
+
+############################################################################
+# END: MailWizz Bounce Handler
+############################################################################
