@@ -132,25 +132,6 @@ virtual-mta pmta-vmta15
 virtual-mta pmta-vmta16
 </virtual-mta-pool>
 
-#<virtual-mta-pool pmta-pool2>
-#virtual-mta pmta-vmta1
-#virtual-mta pmta-vmta2
-#virtual-mta pmta-vmta3
-#virtual-mta pmta-vmta4
-#virtual-mta pmta-vmta5
-#virtual-mta pmta-vmta6
-#virtual-mta pmta-vmta7
-#virtual-mta pmta-vmta8
-#virtual-mta pmta-vmta9
-#virtual-mta pmta-vmta10
-#virtual-mta pmta-vmta11
-#virtual-mta pmta-vmta12
-#virtual-mta pmta-vmta13
-#virtual-mta pmta-vmta14
-#virtual-mta pmta-vmta15
-#virtual-mta pmta-vmta16
-#</virtual-mta-pool>
-
 ############################################################################
 # END: VIRTUAL-MTA-POOL
 ############################################################################
@@ -181,17 +162,4 @@ mail-from /@mta16.domain.com/ virtual-mta=pmta-vmta16
 
 ############################################################################
 # END: VIRTUAL-PMTA-PATTERN
-############################################################################
-
-############################################################################
-# BEGIN: MailWizz Bounce Handler
-############################################################################
-
-#<acct-file |/usr/bin/php /opt/pmta/bouncehandler/bouncehandler.php>
-#    records b
-#    record-fields b timeQueued,bounceCat,vmta,orig,rcpt,srcMta,dlvSourceIp,jobId,dsnStatus,dsnMta,dsnDiag
-#</acct-file>
-
-############################################################################
-# END: MailWizz Bounce Handler
 ############################################################################
