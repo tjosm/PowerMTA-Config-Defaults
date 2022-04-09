@@ -1,0 +1,197 @@
+############################################################################
+# BEGIN: GENERAL OPTIONS
+############################################################################
+
+host-name mta.domain.com
+
+postmaster abuse@domain.com
+domain-key 2022,*,/etc/pmta/domain.com-dkim.key
+smtp-listener 0/0:2525 
+
+<source X.X.X.X>
+    always-allow-relaying yes   # allow feeding from X.X.X.X
+    process-x-virtual-mta yes   # allow selection of a virtual MTA
+    max-message-size unlimited  # 0 implies no cap, in bytes
+    smtp-service yes            # allow SMTP service
+    hide-message-source true
+	process-x-job yes
+    remove-header Received
+</source>
+
+<source 0/0>
+allow-unencrypted-plain-auth no
+default-virtual-mta pmta-pool
+process-x-virtual-mta yes
+smtp-service no
+always-allow-api-submission yes
+</source>
+
+sync-msg-create false 
+sync-msg-update false 
+run-as-root no 
+log-file /var/log/pmta/log # logrotate is used for rotation 
+
+<acct-file /var/log/pmta/acct.csv>
+#    move-to /opt/myapp/pmta-acct   # configure as fit for your application
+#    move-interval 5m
+delete-after 7d
+max-size 50M
+</acct-file>
+
+# transient errors (soft bounces)
+<acct-file /var/log/pmta/diag.csv>
+move-interval 1d
+delete-after 7d
+records t
+</acct-file>
+
+#
+# spool directories
+#
+<spool /var/spool/pmta> 
+delete-file-holders yes
+</spool> 
+
+http-mgmt-port 8080
+http-access 0/0 monitor
+
+############################################################################
+# END: GENERAL OPTIONS
+############################################################################
+
+############################################################################
+# BEGIN: SMTP USERS
+############################################################################
+
+<smtp-user contact> 
+password vip1caa6e9fac9c
+source {pmta-auth1} 
+</smtp-user>
+
+<source {pmta-auth1}>
+    smtp-service yes
+    always-allow-relaying yes
+    require-auth true
+    process-x-virtual-mta yes
+    default-virtual-mta pmta-pool1
+    remove-received-headers true
+    add-received-header false
+    hide-message-source true
+	process-x-job yes
+    remove-header X-PreviewEmail,X-Mailer,X-Mailer-RecptId,X-Mailer-Sent-By,X-Priority
+</source>
+
+############################################################################
+# END: SMTP USERS
+############################################################################
+
+############################################################################
+# BEGIN: VIRTUAL-MTA
+############################################################################
+
+<virtual-mta pmta-vmta0>
+smtp-source-host xx.xx.xx.x0 mta0.domain.com
+domain-key 2022,domain.com,/etc/pmta/domain.com-dkim.key
+<domain *>
+max-cold-virtual-mta-msg 24000/day
+max-msg-rate 20/h
+dkim-sign yes
+</domain>
+</virtual-mta>
+<domain mta0.domain.com>
+</domain>
+
+ ############################################################################
+# END: VIRTUAL-MTA
+############################################################################
+
+############################################################################
+# BEGIN: VIRTUAL-MTA-POOL
+############################################################################
+
+<virtual-mta-pool pmta-pool>
+virtual-mta pmta-vmta0
+</virtual-mta-pool>
+ 
+<virtual-mta-pool pmta-pool1>
+virtual-mta pmta-vmta1
+virtual-mta pmta-vmta2
+virtual-mta pmta-vmta3
+virtual-mta pmta-vmta4
+virtual-mta pmta-vmta5
+virtual-mta pmta-vmta6
+virtual-mta pmta-vmta7
+virtual-mta pmta-vmta8
+virtual-mta pmta-vmta9
+virtual-mta pmta-vmta10
+virtual-mta pmta-vmta11
+virtual-mta pmta-vmta12
+virtual-mta pmta-vmta13
+virtual-mta pmta-vmta14
+virtual-mta pmta-vmta15
+virtual-mta pmta-vmta16
+</virtual-mta-pool>
+
+#<virtual-mta-pool pmta-pool2>
+#virtual-mta pmta-vmta1
+#virtual-mta pmta-vmta2
+#virtual-mta pmta-vmta3
+#virtual-mta pmta-vmta4
+#virtual-mta pmta-vmta5
+#virtual-mta pmta-vmta6
+#virtual-mta pmta-vmta7
+#virtual-mta pmta-vmta8
+#virtual-mta pmta-vmta9
+#virtual-mta pmta-vmta10
+#virtual-mta pmta-vmta11
+#virtual-mta pmta-vmta12
+#virtual-mta pmta-vmta13
+#virtual-mta pmta-vmta14
+#virtual-mta pmta-vmta15
+#virtual-mta pmta-vmta16
+#</virtual-mta-pool>
+
+############################################################################
+# END: VIRTUAL-MTA-POOL
+############################################################################
+
+############################################################################
+# BEGIN: VIRTUAL-PMTA-PATTERN
+############################################################################
+
+<pattern-list pmta-pattern>
+mail-from /@mta0.domain.com/ virtual-mta=pmta-vmta0
+mail-from /@mta1.domain.com/ virtual-mta=pmta-vmta1
+mail-from /@mta2.domain.com/ virtual-mta=pmta-vmta2
+mail-from /@mta3.domain.com/ virtual-mta=pmta-vmta3
+mail-from /@mta4.domain.com/ virtual-mta=pmta-vmta4
+mail-from /@mta5.domain.com/ virtual-mta=pmta-vmta5
+mail-from /@mta6.domain.com/ virtual-mta=pmta-vmta6
+mail-from /@mta7.domain.com/ virtual-mta=pmta-vmta7
+mail-from /@mta8.domain.com/ virtual-mta=pmta-vmta8
+mail-from /@mta9.domain.com/ virtual-mta=pmta-vmta9
+mail-from /@mta10.domain.com/ virtual-mta=pmta-vmta10
+mail-from /@mta11.domain.com/ virtual-mta=pmta-vmta11
+mail-from /@mta12.domain.com/ virtual-mta=pmta-vmta12
+mail-from /@mta13.domain.com/ virtual-mta=pmta-vmta13
+mail-from /@mta14.domain.com/ virtual-mta=pmta-vmta14
+mail-from /@mta15.domain.com/ virtual-mta=pmta-vmta15
+mail-from /@mta16.domain.com/ virtual-mta=pmta-vmta16
+</pattern-list>
+
+############################################################################
+# END: VIRTUAL-PMTA-PATTERN
+############################################################################
+
+############################################################################
+# BEGIN: MailWizz Bounce Handler
+############################################################################
+
+#<acct-file |/usr/bin/php /opt/pmta/bouncehandler/bouncehandler.php>
+#    records b
+#    record-fields b timeQueued,bounceCat,vmta,orig,rcpt,srcMta,dlvSourceIp,jobId,dsnStatus,dsnMta,dsnDiag
+#</acct-file>
+
+############################################################################
+# END: MailWizz Bounce Handler
+############################################################################
